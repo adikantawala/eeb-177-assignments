@@ -5,6 +5,9 @@ date: "March 1, 2017"
 output: html_document
 ---
 ```{r}
+
+# > rmarkdown::render("into_r_week_8.Rmd", output_format = "md_document")
+
 cocoli_dat <- read.table("/home/eeb177-student/Desktop/eeb-177/lab-work/exercise-7/cocoli.txt", header = TRUE)
 head(cocoli_dat)
 str(cocoli_dat)
