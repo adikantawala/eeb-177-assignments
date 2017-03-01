@@ -1,0 +1,45 @@
+---
+title: "EEB177-exercise-8"
+author: "Adi Kantawala"
+date: "March 1, 2017"
+output: html_document
+---
+```{r}
+cocoli_dat <- read.table("/home/eeb177-student/Desktop/eeb-177/lab-work/exercise-7/cocoli.txt", header = TRUE)
+head(cocoli_dat)
+str(cocoli_dat)
+
+View(cocoli_dat)
+
+sizes_in_1994 <- cocoli_dat$dbh1
+names(sizes_in_1994) <- cocoli_dat$tag
+sizes_in_1994
+
+sizes_in_1997 <- cocoli_dat$dbh2
+names(sizes_in_1997) <- cocoli_dat$tag
+
+sizes_in_1998 <- cocoli_dat$dbh3
+names(sizes_in_1998) <- cocoli_dat$tag
+
+sizes_in_1994 == 171
+
+trees_171_1994 = which(sizes_in_1994 ==171)
+trees_171_1994
+
+sizes_in_1997[trees_171_1994]
+
+yearly_RGR_1 = ((cocoli_dat$dbh2- cocoli_dat$dbh1)/cocoli_dat$dbh1)/3
+cocoli_dat$rgr1 = yearly_RGR_1
+```
+
+```{r}
+#make histogram with hist()
+#barplots with barplot()
+#box plot with boxplot()
+hist(cocoli_dat$dbh1, xlab = "DBH in 1994 (mm)", main = "distribution of sizes in 1994", col = "red", ylab = "TEST", border="red")
+?hist()
+
+library(ggplot2)
+ggplot(cocoli_dat) + geom_histogram(aes(dbh1)) + geom_histogram(aes(dbh2)) + ggtitle("distribution of sizes in 1994") 
+```
+
