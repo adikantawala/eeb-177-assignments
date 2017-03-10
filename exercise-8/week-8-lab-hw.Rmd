@@ -2,7 +2,9 @@
 title: "week-8-lab-homework"
 author: "Adi Kantawala"
 date: "March 1, 2017"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r}
@@ -199,4 +201,17 @@ ggplot(home.land.byyear,
            y=value,
            color=type)) +
   geom_line()
+```
+
+```{r}
+dat <- read.csv("/home/eeb177-student/Desktop/Rgraphics/dataSets/EconomistData.csv")
+Graph1 <- ggplot(dat, aes(x = CPI, y = HDI)) + geom_point(aes(color=Region), shape=1)+geom_smooth(method="lm",formula=y ~poly(x,2),color="red")
+
+Graph2 <- Graph1 + scale_color_manual(name=" ", labels = c("Americas", "Asia-Pacific", "Eastern and Central Europe", "Western Europe", "Middle East and North Africa", "Sub-Saharan Africa"), values = c("#0099CC", "#95B9C7", "#45FBC7", "#25383C", "#C24641", "#8A4117")) + scale_x_continuous(name="Corruption Perception Index, 2011 (10=least corrupt)", limits = range(1:10), breaks=pretty(dat$CPI, n=10)) + scale_y_continuous(name="Human Development Index (1=best)", limits = c(0.2,1.0),breaks=pretty(dat$HDI, n=5))
+
+Graph3<- Graph2 + ggtitle("Corruption and human development") 
+Graph3
+
+# as far as I got with help in past office hours
+
 ```
